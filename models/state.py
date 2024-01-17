@@ -1,37 +1,44 @@
 #!/usr/bin/python3
 """This is the state class"""
+from sqlalchemy.ext.declarative import declarative_base
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
-from os import environ
+from sqlalchemy import Column, Integer, String
+import models
+from models.city import City
+import shlex
 
 
 class State(BaseModel, Base):
     """This is the class for State
     Attributes:
-        __tablename__: name of MySQL table
         name: input name
     """
-    __tablename__ = 'states'
+    __tablename__ = "states"
     name = Column(String(128), nullable=False)
 
-    if environ['HBNB_TYPE_STORAGE'] == 'db':
-        cities = relationship('City', cascade='all, delete', backref='state')
-    else:
-        @property
-        def cities(self):
-            """Getter method for cities
-            Return: list of cities with state_id equal to self.id
-            """
-            from models import storage
-            from models.city import City
-            # return list of City objs in __objects
-            cities_dict = storage.all(City)
-            cities_list = []
+    # Define a one-to-many relationship between State and City
+    cities = relationship("City", cascade='all, delete, delete-orphan',
+                          backref="state")
 
-            # copy values from dict to list
-            for city in cities_dict.values():
-                if city.state_id == self.id:
-                    cities_list.append(city)
+    @property
+    def cities(self):
+        """Getter method to retrieve cities related to the State"""
+        var = models.storage.all()
+        lista = []
+        result = []
 
-            return cities_list
+        # Iterate through all objects in storage
+        for key in var:
+            city = key.replace('.', ' ')
+            city = shlex.split(city)
+
+            # Check if the object is an instance of City
+            if city[0] == 'City':
+                lista.append(var[key])
+
+        # Filter cities related to the current State
+        for elem in lista:
+            if elem.state_id == self.id:
+                result.append(elem)
+        return result

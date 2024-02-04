@@ -933,26 +933,6 @@ number_bathrooms: 0
 guillaume@ubuntu:~/AirBnB_v2$ 
 guillaume@ubuntu:~/AirBnB_v2$ echo 'SELECT * FROM place_amenity\G' | mysql -uhbnb_dev -p hbnb_dev_db
 Enter password: 
-*************************** 1. row ***************************
-  place_id: 497e3867-d6e9-4401-9c7c-9687c18d2ac7
-amenity_id: 47321eb8-152a-46df-969a-440aa67a6d59
-*************************** 2. row ***************************
-  place_id: db549ae1-4500-4d0c-9b50-4b4978ed229e
-amenity_id: 47321eb8-152a-46df-969a-440aa67a6d59
-*************************** 3. row ***************************
-  place_id: db549ae1-4500-4d0c-9b50-4b4978ed229e
-amenity_id: 4a307e7f-68f9-438f-81c0-8325898dda2a
-*************************** 4. row ***************************
-  place_id: 497e3867-d6e9-4401-9c7c-9687c18d2ac7
-amenity_id: b80aec52-d0c9-420a-8471-3254572954b6
-*************************** 5. row ***************************
-  place_id: db549ae1-4500-4d0c-9b50-4b4978ed229e
-amenity_id: b80aec52-d0c9-420a-8471-3254572954b6
-guillaume@ubuntu:~/AirBnB_v2$ 
-Repo:
-
-GitHub repository: AirBnB_clone_v2
-File: models/amenity.py, models/place.py
 <br>
 <br>
 <center> <h2>General Use</h2> </center>

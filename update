@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#Bash scripts that will automate updates and upgarades of linux system
+
+sudo apt-get update
+
